@@ -1,0 +1,123 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}User Registration - User Management System{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <form name="register" action="{% url 'insertuser' %}" method="POST">
+            {% csrf_token %}
+            <h1><img src="https://img.icons8.com/fluency/48/000000/add-user-male.png"/> Register New User</h1>
+            
+            <label for="tuid">
+                <img src="https://img.icons8.com/fluency/24/000000/id-verified.png"/> User ID:
+            </label>
+            <input type="text" name="tuid" id="tuid" placeholder="Enter User ID" required>
+
+            <label for="tuname">
+                <img src="https://img.icons8.com/fluency/24/000000/user.png"/> Name:
+            </label>
+            <input type="text" name="tuname" id="tuname" placeholder="Enter Full Name" required>
+
+            <label for="tuemail">
+                <img src="https://img.icons8.com/fluency/24/000000/email.png"/> Email:
+            </label>
+            <input type="email" name="tuemail" id="tuemail" placeholder="Enter Email Address" required>
+
+            <label for="tucontact">
+                <img src="https://img.icons8.com/fluency/24/000000/phone.png"/> Contact:
+            </label>
+            <input type="text" name="tucontact" id="tucontact" placeholder="Enter Contact Number" required>
+
+            <button type="submit" name="reg" class="submit-btn">
+                <img src="https://img.icons8.com/fluency/24/000000/submit-for-approval.png"/> Register
+            </button>
+        </form>
+
+        {% comment %} <form action="/upload_excel" method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <h2>Upload Excel File</h2>
+            <label for="excelFile">
+                <img src="https://img.icons8.com/fluency/24/000000/upload.png"/> Select File:
+            </label>
+            <input type="file" id="excelFile" name="excelFile" accept=".xls, .xlsx">
+            <button type="submit" class="upload-btn">
+                <img src="https://img.icons8.com/fluency/24/000000/upload-to-cloud.png"/> Upload
+            </button>
+        </form> {% endcomment %}
+    </div>
+
+    <style>
+        /* Container Styling */
+        .form-container {
+            max-width: 600px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: #f4f6f8;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        h1, h2 {
+            color: #004aad;
+            text-align: center;
+            margin-bottom: 1em;
+            font-size: 24px;
+        }
+        .container:hover {
+            transform: scale(1.02); /* Subtle hover effect */
+        }
+
+        /* Label and Input Styling */
+        label {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #333;
+            margin-top: 1em;
+        }
+
+        input[type="text"], input[type="email"], input[type="file"] {
+            width: 100%;
+            padding: 0.6em;
+            margin-top: 0.5em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Button Styling */
+        .submit-btn, .upload-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.8em;
+            margin-top: 1.5em;
+            background-color: #004aad;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover, .upload-btn:hover {
+            background-color: #00307e;
+        }
+
+        .submit-btn img, .upload-btn img {
+            margin-right: 0.5em;
+        }
+
+        /* Upload Section Styling */
+        .upload-form {
+            margin-top: 2em;
+            border-top: 1px solid #ddd;
+            padding-top: 2em;
+        }
+    </style>
+
+{% endblock %}

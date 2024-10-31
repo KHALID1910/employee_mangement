@@ -1,0 +1,124 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}User Data - User Management System{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Registered User Data</h1>
+    <p>Below is the list of all users currently registered in the system. You can edit or delete user information as needed.</p>
+
+    <!-- User Data Table -->
+    <table class="table table-bordered user-table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>User Contact</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for us in userdata %}
+            <tr>
+                <td>{{ us.uid }}</td>
+                <td>{{ us.uname }}</td>
+                <td>{{ us.uemail }}</td>
+                <td>{{ us.ucontact }}</td>
+                <td class="action-links">
+                    <a href="/edituser/{{us.id}}" class="btn btn-edit">Edit</a>
+                    <a href="/deleteuser/{{us.id}}" class="btn btn-delete">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="no-data">No user data available. Please add users to view their details here.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+    /* Container styling */
+    .container {
+        max-width: 1000px;
+        margin: 2em auto;
+        padding: 2em;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    h1 {
+        color: #004aad;
+        margin-bottom: 0.5em;
+    }
+    p {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 1em;
+    }
+
+    /* User Data Table */
+    .user-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.5em;
+        font-size: 16px;
+    }
+    .user-table thead {
+        background-color: #004aad;
+        color: #fff;
+    }
+    .user-table th, .user-table td {
+        padding: 1em;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    .user-table tbody tr:nth-child(even) {
+        background-color: #f4f6f8;
+    }
+    .user-table .action-links {
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+    }
+
+    /* Action Buttons */
+    .btn {
+        padding: 0.5em 1em;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    .btn-edit {
+        background-color: #4CAF50;
+    }
+    .btn-edit:hover {
+        background-color: #388E3C;
+    }
+    .btn-delete {
+        background-color: #f44336;
+    }
+    .btn-delete:hover {
+        background-color: #d32f2f;
+    }
+
+    /* No Data Row */
+    .no-data {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+    }
+</style>
+
+{% endblock %}

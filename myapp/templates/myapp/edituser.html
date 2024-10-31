@@ -1,0 +1,114 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Edit User Profile - User Management System{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <div class="form-container">
+        <h1><i class="fas fa-user-edit"></i>Edit User Profile</h1>
+        <p>You can update the information for the user below. Make sure to save your changes once you've made the necessary updates.</p>
+        
+        <form name="register" action="/updateuser/{{ user.id }}/" method="POST">
+            {% csrf_token %}
+
+<label for="tuid">
+    <i class="fas fa-id-badge"></i> User ID:
+</label>
+<input type="text" name="tuid" id="tuid" value="{{ user.uid }}" required>
+
+<label for="tuname">
+    <i class="fas fa-user"></i> Name:
+</label>
+<input type="text" name="tuname" id="tuname" value="{{ user.uname }}" required>
+
+<label for="tuemail">
+    <i class="fas fa-envelope"></i> Email:
+</label>
+<input type="email" name="tuemail" id="tuemail" value="{{ user.uemail }}" required>
+
+<label for="tucontact">
+    <i class="fas fa-phone"></i> Contact:
+</label>
+<input type="text" name="tucontact" id="tucontact" value="{{ user.ucontact }}" required>
+
+<button type="submit" name="reg" class="submit-btn">
+    <i class="fas fa-save"></i> Save Changes
+</button>
+
+        </form>
+    </div>
+
+    <style>
+        /* Form Container Styling */
+        .form-container {
+            max-width: 600px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: #f4f6f8;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        h1 {
+            color: #004aad;
+            text-align: center;
+            margin-bottom: 0.5em;
+            font-size: 24px;
+        }
+        .container:hover {
+            transform: scale(1.02); /* Subtle hover effect */
+        }
+
+        p {
+            color: #555;
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+
+        /* Label and Input Styling */
+        label {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #333;
+            margin-top: 1em;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 0.6em;
+            margin-top: 0.5em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Submit Button Styling */
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.8em;
+            margin-top: 1.5em;
+            background-color: #004aad;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #00307e;
+        }
+
+        .submit-btn img {
+            margin-right: 0.5em;
+        }
+    </style>
+
+{% endblock %}

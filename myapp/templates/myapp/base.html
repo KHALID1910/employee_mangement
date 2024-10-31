@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}User Management System{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #004aad;
+            padding: 1em;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        .navbar .nav-links {
+            display: flex;
+            gap: 1.5em;
+        }
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .navbar .nav-links a:hover {
+            color: #cfe2ff;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 3px;
+        }
+        /* Main Content */
+        .container {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            color: #004aad;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 1em;
+        }
+        .options a {
+            display: inline-block;
+            margin: 1em;
+            padding: 0.8em 2em;
+            color: #fff;
+            background-color: #004aad;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .options a:hover {
+            background-color: #00307e;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 1em 0;
+        }
+        /* Features & Services Section */
+        .features, .services {
+            margin-top: 3em;
+            text-align: left;
+        }
+        .features h2, .services h2 {
+            font-size: 24px;
+            color: #004aad;
+            margin-bottom: 0.5em;
+            text-align: center;
+        }
+        .feature, .service {
+            display: flex;
+            align-items: center;
+            padding: 1em;
+            margin: 1em 0;
+            background-color: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .feature img, .service img {
+            width: 50px;
+            height: 50px;
+            margin-right: 1em;
+        }
+        .feature div, .service div {
+            flex: 1;
+        }
+        .feature h3, .service h3 {
+            font-size: 20px;
+            color: #004aad;
+            margin-bottom: 0.2em;
+        }
+        /* Footer Styling */
+        .footer {
+            background-color: #004aad;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+            margin-top: 2em;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+        }
+        .footer p {
+            margin: 0 1em; /* Spacing between paragraphs */
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1em;
+        }
+        .footer a:hover {
+            color: #cfe2ff;
+        }
+        .footer .social-links {
+            display: flex;
+            align-items: center;
+        }
+        .footer .social-links i {
+            margin: 0 5px;
+        }
+        /* Footer Styling */
+.footer {
+    background-color: #004aad; /* Dark blue background */
+    color: #ffffff; /* White text color */
+    padding: 1em 0;
+    text-align: center;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+.footer p {
+    margin: 0 1em; /* Spacing between paragraphs */
+    color: #ffffff; /* Ensure text color is white */
+}
+.footer a {
+    color: #ffffff; /* Ensure link color is white */
+    text-decoration: none;
+    margin: 0 1em;
+}
+.footer a:hover {
+    color: #cfe2ff; /* Light blue color on hover */
+}
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{% url 'index' %}" style="text-decoration:none;"><div class="logo">UMS</div></a>
+        <div class="nav-links">
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'viewuser' %}">View Users</a>
+            <a href="{% url 'contactus' %}">Contact Us</a>
+            <a href="{% url 'userreg' %}">Register User</a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+   
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 User Management System. All rights reserved.</p>
+        <a href="mailto:info@example.com"><i class="fas fa-envelope"></i> info@example.com</a><div class="social-links">
+            <a href="https://www.facebook.com/share/1tZpxfdwhuznV9y8/" target="_blank">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a> | 
+            <a href="https://www.instagram.com/itz_khalid_sallu.143/" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a> | 
+            <a href="https://www.linkedin.com" target="_blank">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+            </a>
+        </div>
+    </div>
+</body>
+</html>

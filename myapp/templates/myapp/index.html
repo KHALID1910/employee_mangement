@@ -1,0 +1,66 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Welcome to User Management System{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the User Management System</h1>
+    <h2>Solution for User Registration and Management</h2>
+    <p>This system allows you to manage user data efficiently, offering a variety of tools to create, view, and update user records with ease.</p>
+    
+    <div class="options">
+        <a href="{% url 'userreg' %}">Create Users</a>
+        <a href="{% url 'viewuser' %}">View Existing Users</a>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+        <h2>Why Choose Our System?</h2>
+        <div class="feature">
+            <img src="https://img.icons8.com/clouds/100/000000/security-shield.png" alt="Security Icon">
+            <div>
+                <h3>Data Security</h3>
+                <p>Your data is safe with us. Our system provides secure storage and access to user records, ensuring confidentiality.</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="https://img.icons8.com/clouds/100/000000/cloud.png" alt="Cloud Icon">
+            <div>
+                <h3>Cloud Access</h3>
+                <p>Access the User Management System anytime, anywhere. Our cloud-based solution is available on all devices.</p>
+            </div>
+        </div>
+        <div class="feature">
+            <img src="https://img.icons8.com/clouds/100/000000/speed.png" alt="Efficiency Icon">
+            <div>
+                <h3>Efficient Performance</h3>
+                <p>Manage large volumes of user data quickly and easily with our optimized performance and responsive interface.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services">
+        <h2>Our Services</h2>
+        <div class="service">
+            <img src="https://img.icons8.com/clouds/100/000000/add-user-male.png" alt="User Registration Icon">
+            <div>
+                <h3><a href="{% url 'userreg' %}" style="text-decoration:none;">User Registration</a></h3>
+                <p>Easily register new users and store their information securely. Perfect for organizations managing user profiles.</p>
+            </div>
+        </div>
+        <div class="service">
+            <img src="https://img.icons8.com/clouds/100/000000/user-folder.png" alt="View Users Icon">
+            <div>
+                <h3><a href="{% url 'viewuser' %}" style="text-decoration:none;">View User Data</a></h3>
+                <p>Quickly search and view all existing user data, with options to update or delete information as required.</p>
+            </div>
+        </div>
+        <div class="service">
+            <img src="https://img.icons8.com/clouds/100/000000/upload.png" alt="Data Upload Icon">
+            <div>
+                <h3><a href="{% url 'upload_excel' %}" style="text-decoration:none;">Upload Data</a></h3>
+                <p>Our system supports Excel uploads, allowing you to add or update large batches of user information at once.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

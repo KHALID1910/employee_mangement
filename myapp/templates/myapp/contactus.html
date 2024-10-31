@@ -1,0 +1,121 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Contact Us - User Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1><i class="fas fa-envelope"></i> Contact Us</h1>
+    <p>If you have any queries or suggestions, please fill out the form below, and we will get back to you as soon as possible!</p>
+    
+    <form action="{% url 'send_contact_email' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="contact"><i class="fas fa-phone"></i> Contact Number:</label>
+            <input type="text" id="contact" name="contact" required>
+        </div>
+        <div class="form-group">
+            <label for="message"><i class="fas fa-comments"></i> Your Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #f4f4f4;  /* Soft background color */
+        font-family: 'Arial', sans-serif;  /* Smooth font */
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 2em auto;
+        padding: 2em;
+        background-color: #ffffff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        transition: transform 0.3s;
+    }
+
+    .container:hover {
+        transform: scale(1.02); /* Subtle hover effect */
+    }
+
+    h1 {
+        color: #004aad;
+        margin-bottom: 1em;
+        text-align: center; /* Center-align the header */
+    }
+
+    p {
+        text-align: center; /* Center-align the paragraph */
+        color: #555;
+        margin-bottom: 2em; /* Extra space below the paragraph */
+    }
+
+    .form-group {
+        margin-bottom: 1.5em;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5em;
+        color: #333;
+        font-weight: bold; /* Make labels bold */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 0.7em; /* Increased padding for better touch */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s; /* Smooth transition for focus */
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+        border-color: #004aad;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 74, 173, 0.5); /* Shadow on focus */
+    }
+
+    .submit-btn {
+        background-color: #004aad;
+        color: #ffffff;
+        padding: 0.7em 1.5em;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px; /* Make button text larger */
+        transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+    }
+
+    .submit-btn:hover {
+        background-color: #00307e;
+        transform: translateY(-2px); /* Slight lift on hover */
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 600px) {
+        .container {
+            width: 90%; /* Adjust width on small screens */
+        }
+
+        .submit-btn {
+            width: 100%; /* Full width button on small screens */
+        }
+    }
+</style>
+{% endblock %}

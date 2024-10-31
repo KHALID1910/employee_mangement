@@ -1,0 +1,152 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}Upload User Data - User Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Upload User Data</h1>
+    <p>Upload an Excel file to manage your user data efficiently. You can view the data after uploading.</p>
+
+    <!-- Upload Form -->
+    <div class="upload-section">
+        <h2><img src="https://img.icons8.com/clouds/100/000000/upload.png" alt="Upload Icon" width="50"> Upload an Excel File</h2>
+        <form action="{% url 'upload_excel' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="excelFile">Select Excel file:</label>
+            <input type="file" id="excelFile" name="excelFile" accept=".xls, .xlsx" required>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+    <br>
+
+    <!-- View Data Button -->
+    <div class="view-data-btn">
+        <button onclick="window.location.href='{% url 'view_data' %}'">View Uploaded Data</button>
+    </div>
+
+    <!-- User Data Table -->
+    <h2>Uploaded User Data</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>IND.ID</th>
+                <th>URL ID</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in df %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.urlid }}</td>
+                <td><a href="{{ row.url }}" target="_blank">{{ row.url }}</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" class="no-data">No data available. Please upload a file to view data.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* Page styling */
+    .container {
+        max-width: 900px;
+        margin: 2em auto;
+        padding: 2em;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    h1 {
+        color: #004aad;
+        margin-bottom: 0.5em;
+    }
+    p {
+        color: #666;
+        font-size: 16px;
+    }
+    /* Upload Section */
+    .upload-section {
+        margin: 2em 0;
+        text-align: left;
+    }
+    .upload-section h2 {
+        font-size: 24px;
+        color: #004aad;
+        margin-bottom: 0.5em;
+        display: flex;
+        align-items: center;
+    }
+    .upload-section form {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+    }
+    .upload-section input[type="file"] {
+        padding: 0.5em;
+    }
+    .upload-section button {
+        padding: 0.6em 1.2em;
+        color: #fff;
+        background-color: #004aad;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .upload-section button:hover {
+        background-color: #00307e;
+    }
+    /* View Data Button */
+    .view-data-btn {
+        margin: 1em 0;
+    }
+    .view-data-btn button {
+        padding: 0.8em 1.5em;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #004aad;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .view-data-btn button:hover {
+        background-color: #00307e;
+    }
+    /* Data Table */
+    .data-table {
+        width: 100%;
+        margin-top: 1.5em;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 16px;
+    }
+    .data-table thead {
+        background-color: #004aad;
+        color: #fff;
+    }
+    .data-table th, .data-table td {
+        padding: 1em;
+        border: 1px solid #ddd;
+    }
+    .data-table a {
+        color: #004aad;
+        text-decoration: none;
+    }
+    .data-table a:hover {
+        text-decoration: underline;
+    }
+    .no-data {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+    }
+</style>
+{% endblock %}
